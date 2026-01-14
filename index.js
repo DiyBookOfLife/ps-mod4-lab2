@@ -1,24 +1,66 @@
-// empty shopping list
+// Data
 let shoppingList = [];
+
+// DOM Nodes
 let inputItem = document.getElementById("input-list-item");
 let addItemBtn = document.getElementById("add-item-btn");
+const removeItemBtn = document.getElementById("remove-item-btn");
+const cartList = document.getElementById("cart");
 
-  // Function to add item
+// Add Item
 function addItem(item) {
-  if (shoppingList.includes(item)){
-    alert('Item already added. Add another item')
+  if (shoppingList.includes(item)) {
+    alert("Item already added. Add another item");
   } else {
-  shoppingList.push(item);
+    shoppingList.push(item);
   }
 }
 
-// Function to remove item
+// Remove Last Item
 function removeLastItem() {
   shoppingList.pop();
 }
 
-// Function to log items in shoppingList
+// Display List (console-only)
 function displayList() {
-  console.log(shoppingList);
+  shoppingList.forEach((i) => console.log(i));
 }
 
+// Filter Items
+function filterItems(word) {
+  return shoppingList.filter((item) =>
+    item.toLowerCase().includes(word.toLowerCase())
+  );
+}
+
+// Render Cart
+function renderCart() {
+  cartList.innerHTML = "";
+  for (let i = 0; i < shoppingList.length; i++) {
+    let listItem = document.createElement("li");
+    let deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "Remove Item";
+    deleteBtn.id = i;
+    listItem.innerText = shoppingList[i];
+    listItem.appendChild(deleteBtn);
+    cartList.appendChild(listItem);
+  }
+}
+
+// Event Listeners
+addItemBtn.addEventListener("click", function () {
+  const item = inputItem.value.trim();
+  if (item === "") {
+    alert("Please enter an item.");
+    return;
+  }
+
+  addItem(item);
+  renderCart();
+  itemInput.value = "";
+});
+
+// removeItemBtn.addEventListener("click", function () {
+//   removeLastItem();
+//   renderCart();
+// });
