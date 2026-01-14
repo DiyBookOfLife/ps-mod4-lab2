@@ -4,7 +4,6 @@ let shoppingList = [];
 // DOM Nodes
 let inputItem = document.getElementById("input-list-item");
 let addItemBtn = document.getElementById("add-item-btn");
-const removeItemBtn = document.getElementById("remove-item-btn");
 const cartList = document.getElementById("cart");
 
 // Add Item
@@ -38,11 +37,7 @@ function renderCart() {
   cartList.innerHTML = "";
   for (let i = 0; i < shoppingList.length; i++) {
     let listItem = document.createElement("li");
-    let deleteBtn = document.createElement("button");
-    deleteBtn.innerText = "Remove Item";
-    deleteBtn.id = i;
     listItem.innerText = shoppingList[i];
-    listItem.appendChild(deleteBtn);
     cartList.appendChild(listItem);
   }
 }
@@ -57,10 +52,6 @@ addItemBtn.addEventListener("click", function () {
 
   addItem(item);
   renderCart();
-  itemInput.value = "";
+  inputItem.value = "";
 });
 
-// removeItemBtn.addEventListener("click", function () {
-//   removeLastItem();
-//   renderCart();
-// });

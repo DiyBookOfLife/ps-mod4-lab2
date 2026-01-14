@@ -11,15 +11,19 @@
     />
     <title>Lab2 - Array Manipulation</title>
   </head>
-  <body class="container">
+  <body class="container d-col column-gap-2 mt-5">
     <header>
       <h1>Shopping List:</h1>
     </header>
-    <main class="container d-flex column-gap-2">
+    <main class="container d-flex column-gap-2 mb-3">
       <input type="text" class="col-4" id="input-list-item" />
       <button type="button" class="col-1" id="add-item-btn">Add Item</button>
-      <ul id="cart"></ul>
+      <button type="button" class="col-1" id="add-item-btn">Remove Last Item</button>
+      <button type="button" class="col-1" id="add-item-btn">View List</button>
     </main>
+    <section>
+      <ul id="cart"></ul>
+    </section>
     <script src="index.js"></script>
   </body>
 </html>
