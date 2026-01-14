@@ -4,6 +4,10 @@ let shoppingList = [];
 // DOM Nodes
 let inputItem = document.getElementById("input-list-item");
 let addItemBtn = document.getElementById("add-item-btn");
+let removeLastItem = document.getElementById("remove-item-btn");
+let viewList = document.getElementById("view-list-btn");
+let filterBtn = document.getElementById("filter-btn");
+
 const cartList = document.getElementById("cart");
 
 // Add Item
@@ -13,23 +17,6 @@ function addItem(item) {
   } else {
     shoppingList.push(item);
   }
-}
-
-// Remove Last Item
-function removeLastItem() {
-  shoppingList.pop();
-}
-
-// Display List (console-only)
-function displayList() {
-  shoppingList.forEach((i) => console.log(i));
-}
-
-// Filter Items
-function filterItems(word) {
-  return shoppingList.filter((item) =>
-    item.toLowerCase().includes(word.toLowerCase())
-  );
 }
 
 // Render Cart
@@ -42,7 +29,11 @@ function renderCart() {
   }
 }
 
-// Event Listeners
+// ======================
+// EVENT LISTENERS
+// ======================
+
+// Add Event
 addItemBtn.addEventListener("click", function () {
   const item = inputItem.value.trim();
   if (item === "") {
@@ -55,3 +46,20 @@ addItemBtn.addEventListener("click", function () {
   inputItem.value = "";
 });
 
+// Remove Event
+removeLastItem.addEventListener("click", function () {
+  shoppingList.pop();
+  console.log(shoppingList);
+});
+
+// Display List (console-only)
+function displayList() {
+  shoppingList.forEach((i) => console.log(i));
+}
+
+// Filter Items
+function filterItems(word) {
+  return shoppingList.filter((item) =>
+    item.toLowerCase().includes(word.toLowerCase())
+  );
+}
