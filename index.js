@@ -4,8 +4,8 @@ let shoppingList = [];
 // DOM Nodes
 let inputItem = document.getElementById("input-list-item");
 let addItemBtn = document.getElementById("add-item-btn");
-let removeLastItem = document.getElementById("remove-item-btn");
-let viewList = document.getElementById("view-list-btn");
+let removeLastBtn = document.getElementById("remove-item-btn");
+let viewListBtn = document.getElementById("view-list-btn");
 let filterBtn = document.getElementById("filter-btn");
 
 const cartList = document.getElementById("cart");
@@ -17,6 +17,18 @@ function addItem(item) {
   } else {
     shoppingList.push(item);
   }
+}
+
+// Remove Last Item
+function displayList() {
+  shoppingList.forEach((item) => console.log(item));
+}
+
+// Filter Items
+function filterItems(word) {
+  return shoppingList.filter((item) =>
+    item.toLowerCase().includes(word.toLowerCase())
+  );
 }
 
 // Render Cart
@@ -46,20 +58,24 @@ addItemBtn.addEventListener("click", function () {
   inputItem.value = "";
 });
 
-// Remove Event
-removeLastItem.addEventListener("click", function () {
+// Remove Last Item Button
+removeLastBtn.addEventListener("click", function () {
   shoppingList.pop();
-  console.log(shoppingList);
+  renderCart();
 });
 
-// Display List (console-only)
-function displayList() {
-  shoppingList.forEach((i) => console.log(i));
-}
+// View List Button (console-only)
+viewListBtn.addEventListener("click", function () {
+  displayList();
+});
 
-// Filter Items
-function filterItems(word) {
-  return shoppingList.filter((item) =>
-    item.toLowerCase().includes(word.toLowerCase())
-  );
-}
+// Filter Button
+filterBtn.addEventListener("click", function () {
+  let searchWord = prompt("Enter item to search for:");
+  if (!searchWord) {
+    return;
+  }
+  let results = filterItems(searchWord);
+  alert(results);
+  console.log("Search Results: " + results);
+});
